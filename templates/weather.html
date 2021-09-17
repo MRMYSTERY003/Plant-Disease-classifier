@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset  "UTF-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
+        <link href="../static/styles/w_style.css" rel='stylesheet' type='text/css' media="all">
+        <title>Weather APP</title>
+    </head>
+    <body>
+
+    <header>
+        <div class = 'title-bar' id = 'title-bar'>
+            <div class = 'home' id = 'home'>
+                <a href = '/' style = 'text-decoration: none; color : #f5deb3;' >HOME</a> 
+            </div>
+
+
+            <div class = 'about' id = 'about'>
+                ABOUT
+            </div>
+
+            <div class = 'weather' id = 'weather'>
+               <a href = '/weather' style = 'text-decoration: none; color: rgb(170, 240, 6); ' >WEATHER</a>
+            </div>
+
+            <div class = 'help' id = 'help'>
+                <a href = '/pre' style = 'text-decoration: none; color : #f5deb3;' >PREDICT</a>
+            </div>
+        </div>
+    </header>
+        <br>
+
+
+        <div class="container">
+             <div class="current-info">
+
+                <div class = "date-container">
+                    <div class='time' id = 'time'>
+                        12:30 <span id = "am-pm">PM</span>
+                    </div>
+                    <div class = "date" id = 'date'>
+                        Monday,24 May 
+                    </div>
+
+                    <div class = "others" id = "current-weather-time">
+                       
+                    </div>                 
+                </div>
+
+                <div class="place-container">
+                    <div class = "time-zone" id = "time-zone">Asia/Chennai</div>
+                    <div id = "country" class = "country">IN</div>
+                </div>
+            </div>
+
+        </div>
+
+            <div class = "future-forcast">
+                <div class = "today" id = "current-temp">
+                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt = "weather icon" class = "w-icon">
+                    <div class = 'others'>
+                        <div class = 'day'>Monday</div>
+                        <div class = 'temp'>Night-25.6&#176; C</div>
+                        <div class = 'temp'>Day-35.6&#176; C</div>
+                    </div>
+                </div>
+                <div class = 'weather-forcast' id = 'weather-forcast'>
+                    <div class = "weather-forcast-item">
+                        <div class = 'day' >Tue</div>
+                        <img src ='https://openweathermap.org/img/wn/10d@2x.png' alt= "weather icon" class = 'W-icon'>
+                        <div class = 'temp'>Night - 25.6&#176;C</div>
+                        <div class = 'temp'>Day - 35.6&#176;C</div>                       
+                    </div>
+
+                        <div class = "weather-forcast-item">
+                        <div class = 'day' >Wed</div>
+                        <img src ='https://openweathermap.org/img/wn/10d@2x.png' alt= "weather icon" class = 'W-icon'>
+                        <div class = 'temp'>Night - 25.6&#176;C</div>
+                        <div class = 'temp'>Day - 35.6&#176;C</div>
+
+                    </div> <div class = "weather-forcast-item">
+                        <div class = 'day' >Thu</div>
+                        <img src ='https://openweathermap.org/img/wn/10d@2x.png' alt= "weather icon" class = 'W-icon'>
+                        <div class = 'temp'>Night - 25.6&#176;C</div>
+                        <div class = 'temp'>Day - 35.6&#176;C</div> 
+
+                    </div> <div class = "weather-forcast-item">
+                        <div class = 'day' >Fri</div>
+                        <img src ='https://openweathermap.org/img/wn/10d@2x.png' alt= "weather icon" class = 'W-icon'>
+                        <div class = 'temp'>Night - 25.6&#176;C</div>
+                        <div class = 'temp'>Day - 35.6&#176; C</div> 
+
+                    </div> 
+                        <div class = "weather-forcast-item">
+                        <div class = 'day' >Sat</div>
+                        <img src ='https://openweathermap.org/img/wn/10d@2x.png' alt= "weather icon" class = 'W-icon'>
+                        <div class = 'temp'>Night - 25.6&#176;C</div>
+                        <div class = 'temp'>Day - 35.6&#176;C</div> 
+                    </div>
+                </div>
+            </div>
+
+        <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+
+        <script src="{{url_for('static', filename = 'js/script.js')}}"></script>
+    </body>
+
+</html>

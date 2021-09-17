@@ -1,0 +1,110 @@
+<DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Cultivos</title>
+        <meta charset  "UTF-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../static/styles/server.css" rel='stylesheet' type='text/css' media="all">
+    </head>
+
+
+    <body>
+
+
+        <header>
+        <div class = 'title-bar' id = 'title-bar'>
+            <div class = 'home' id = 'home'>
+                <a href = '/' style = 'text-decoration: none; color : #f5deb3;' >HOME</a> 
+            </div>
+
+
+            <div class = 'about' id = 'about'>
+                ABOUT
+            </div>
+
+            <div class = 'weather' id = 'weather'>
+               <a href = '/weather' style = 'text-decoration: none; color :#f5deb3;' >WEATHER</a>
+            </div>
+
+            <div class = 'help' id = 'help'>
+                <a href = '/pre' style = 'text-decoration: none; color :rgb(170, 240, 6);' >PREDICT</a>
+            </div>
+        </div>
+    </header>
+
+    <br>
+
+        <div class = 'head' id  = 'head'>
+            <div class ='first' >
+                <h1 class = 'one'> WELCOME TO CULTIVOS</h1>
+            </div>
+            <br>
+            <div class = 'second'>
+                <h3 class = 'two'> OFFERING FARMERS SOLUTION</h3>
+            </div>
+            <div class = 'inner'>
+                <h3 class = 'three'>WORLD WIDE</h3>
+            </div>
+        </div>
+
+        <br>
+        <div class = '_body' >
+            <div class = 'first'>
+                USER FRIENDLY INTERFACE 
+            </div>
+            <br>
+            <div class = 'second'>
+                UPLOAD YOUR PLANT LEAF IMAGE 
+            </div>
+            <br>
+            <div class = 'third'>
+                HIT PREDICT
+            </div>
+        </div>
+
+        <br>
+
+        <div class = 'results' >
+            PROVIDES THE ROOT CAUSE AND SOLUTION FOR IDENTIFIED PROBLEM
+        </div>
+
+<br>
+   <div class = 'prediction'>
+        <div class = '_head'>
+            Test Your Plants
+        </div>
+        <div class = 'second'>
+            <form action="{{ url_for('predict') }}" method="POST" enctype=multipart/form-data>
+                <br>
+                <input type="file" name="file" class="form-control-file" id="inputImage" onchange=previewImage(event) required>
+                <br>
+                <br>
+                <button class="predict_button" type="submit">PREDICT</button>
+            </form>
+        </div>
+        <div class = 'image'>
+            <img id="output-image" class="rounded mx-auto d-block" />
+        <br />
+        </div> 
+    </div>
+
+
+
+
+    <script>
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById('output-image')
+        output.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    </script>
+
+    </body>
+
+</html>
