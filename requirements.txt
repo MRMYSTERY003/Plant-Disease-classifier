@@ -1,6 +1,6 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-cpu/torch-1.5.1%2Bcpu-cp36-cp36m-linux_x86_64.whl
-torchvision==0.7.0
+torch==1.8.1+cpu
+torchvision==0.9.1+cpu
 
 numpy==1.16.2
 numpydoc==0.8.0
