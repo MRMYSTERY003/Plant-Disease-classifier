@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(12, 9, 3, 0.7);
+    font-size: calc(1rem + 1vw);
+    border-radius: 10px;
+    padding: 10px;
+    color: #f5deb3;
+}
+
+h1 {
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+h2 {
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.catagory {
+    background-color: rgba(238, 232, 170, 0.459);
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+ul {
+    background-color: rgba(238, 232, 170, 0.6);
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+}
+
+p {
+    background-color: #EEE8AA;
+    color: black;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+p.ex1 {
+    margin: 35px;
+}
+
+p1 {
+    background-color: #9acd32;
+    color: red;
+}
+
+ol {
+    color: white;
+}
+
+ul {
+    background-color: #EEE8AA;
+    color: black;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}

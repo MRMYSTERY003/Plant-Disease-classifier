@@ -1,0 +1,202 @@
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+        body {
+            background: url('https://images.unsplash.com/photo-1468958118603-09353f91a3dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');
+            font-family: 'Poppins', sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+        
+        .title-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(12, 9, 3, 0.7);
+            font-size: calc(1rem + 1vw);
+            border-radius: 10px;
+            padding: 10px;
+            color: #f5deb3;
+        }
+        
+        .head {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .head .first {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            background-attachment: fixed;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px;
+        }
+        
+        .head .first .one {
+            color: wheat;
+        }
+        
+        .head .second {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px;
+        }
+        
+        .head .second .two {
+            color: wheat;
+        }
+        
+        .head .inner {
+            display: flex;
+            justify-content: center;
+            color: rgb(24, 23, 21);
+        }
+        
+        ._body {
+            flex-direction: column;
+            font-weight: 200;
+        }
+        
+        ._body .first {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px;
+            font-size: 20px;
+            color: wheat;
+        }
+        
+        ._body .second {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px;
+            font-size: 20px;
+            color: wheat;
+        }
+        
+        ._body .third {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px;
+            font-size: 20px;
+            color: wheat;
+        }
+        
+        .results {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(19, 48, 38, 0.7);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 400;
+            color: wheat;
+        }
+        
+        .prediction {
+            background-color: rgba(122, 6, 93, 0.7);
+            padding: 10px;
+            flex-direction: column;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+        }
+        
+        .prediction ._head {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 400;
+            color: wheat;
+        }
+        
+        .prediction .second {
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 400;
+        }
+        
+        .form-control-file::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        
+        .form-control-file::before {
+            content: 'SELECT YOUR IMAGE';
+            display: flex;
+            justify-content: center;
+            background: rgba(5, 5, 0, 0.7);
+            border: 1px solid rgb(30, 3, 94);
+            border-radius: 10px;
+            padding: 5px 10px;
+            outline: none;
+            white-space: nowrap;
+            cursor: pointer;
+            color: wheat;
+            font-weight: 400;
+            font-size: 10pt;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+        }
+        
+        .form-control-file:hover::before {
+            border-color: rgb(245, 242, 242);
+        }
+        
+        .form-control-file:active::before {
+            background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+        }
+        
+        .predict_button {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(22, 8, 1, 0.911);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding: 5px 10px;
+            color: wheat;
+        }
+        
+        .prediction .image {
+            display: flex;
+            justify-content: center;
+        }
