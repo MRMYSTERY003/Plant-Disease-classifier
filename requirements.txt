@@ -1,7 +1,9 @@
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.6.0+cpu
+torchvision==0.7.0+cpu
+
 numpy==1.16.2
 numpydoc==0.8.0
 Pillow==8.2.0
-https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
 gunicorn == 19.9.0
-torchvision==0.2.2
 Flask==1.0.2
