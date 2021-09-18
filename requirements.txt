@@ -1,5 +1,5 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-torch-0.3.0.post4-cp27-cp27m-linux_x86_64.whl
+cpu/torch-0.3.0.post4-cp27-cp27m-linux_x86_64.whl
 torchvision==0.7.0
 
 numpy==1.16.2
