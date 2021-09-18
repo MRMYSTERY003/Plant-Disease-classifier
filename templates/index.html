@@ -1,0 +1,119 @@
+<DOCTYPE html>
+
+<html>
+    <head>
+        <title>Cultivos</title>
+        <meta charset  "UTF-8">
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../static/styles/style.css" rel='stylesheet' type='text/css' media="all">
+    </head>
+    <body>
+
+    <header>
+        <div class = 'title-bar' id = 'title-bar'>
+            <div class = 'home' id = 'home'>
+                
+                HOME 
+            </div>
+
+
+            <div class = 'about' id = 'about'>
+                <a href = '/about' style = 'text-decoration: none; color:  #f5deb3; ' >ABOUT</a>
+            </div>
+
+            <div class = 'weather' id = 'weather'>
+               <a href = '/weather' style = 'text-decoration: none; color : #f5deb3;' >WEATHER</a>
+            </div>
+
+            <div class = 'help' id = 'help'>
+                <a href = '/pre' style = 'text-decoration: none; color : #f5deb3;' >PREDICT</a>
+            </div>
+        </div>
+    </header>
+        <br>
+
+        <div class = 'head' id = 'head'>
+            <div class = 'first'>WORRIED ABOUT YOUR PLANT</div> 
+            <div class = 'second'>DOC IS HERE</div>
+        </div>
+
+        <br>
+
+        <div class = 'procedure' id = 'procedure'>
+            <div class = 'step1' id = 'step1'>
+                <div class = 'content' >
+                    TAKE A PIC
+                </div>
+                <div class = 'gif' >
+                   <a href = '/pre'> <img src="{{url_for('static',filename ='images/p.gif')}}" height = 100 width = 100> </a>
+                </div>
+            </div>
+
+        <br>
+
+
+            <div class = 'step2' id = 'step2'>
+                <div class = 'content' >
+                    UPLOAD TO CULTIVOS  
+                </div>
+                <div class = 'gif' >
+                    <img src="{{url_for('static',filename ='images/upload.gif')}}" height = 100 width = 100>
+                </div>           
+            </div>
+
+        <br>
+
+
+            <div class = 'step3' id  = 'step3'>
+                <div class = 'content' >
+                    HIT PREDICT 
+                </div>
+                <div class = 'gif' >
+                    <img src="{{url_for('static',filename ='images/submit.gif')}}" height = 100 width = 200>
+                </div> 
+            </div>
+
+        <br>
+
+
+            <div class = 'step4' id  = 'step4'>
+                GET THE RESULT 
+            </div>
+
+        </div>
+
+        <br>
+
+
+        <div class = 'weather-data' id = 'weather-data'>
+                <div class = 'content' >
+            ALSO GET THE WEATHER DATA 
+                </div>
+            <div class= 'w-img' id = 'w-img'>
+                <a href = '/weather'> <img src="{{url_for('static',filename ='images/Weather.gif')}}" height = 175 width = 200> </a>
+            </div>
+        
+        </div>
+        
+
+        <br>
+
+
+        <div class = 'note' id = 'note'>
+            <h4> NOTE: </h4>
+            <div class = 'content' id = 'content'>
+                ALL THE SUGGESTION DONE BY THE APP IS JUST A PREDICTION , SO 
+                REFER A SPECIALIST BEFORE DOING ANYTHING 
+            </div>
+        </div>
+
+
+
+
+
+
+    </body>
+
+
+</html>
