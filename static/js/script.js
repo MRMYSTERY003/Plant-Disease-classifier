@@ -1,103 +1,261 @@
-const timeEl = document.getElementById('time');
-const dateEl = document.getElementById('date');
-const currentWatherItemsEl = document.getElementById('current-weather-time');
-const timezone = document.getElementById('time-zone');
-const countryEl = document.getElementById('country');
-const weatherForcastEl = document.getElementById('weather-forcast');
-const currentTempEl = document.getElementById('current-temp');
-const ampmEl = document.getElementById('am-pm')
+class fetchForecastApi {
+    constructor() {
+        this.baseApiUrl = 'https://www.metaweather.com/api/location';
+        this.searchApiUrl = `${this.baseApiUrl}/search`;
+        this.addCorsHeader();
+    }
 
-const days = ['Sunday','Monday','Tuesday','Thursday', 'Friday', 'Saturday'];
-const months = ['Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep',"oct",'Nov','Dec'];
+    addCorsHeader() {
+        $.ajaxPrefilter(options => {
+            if (options.crossDomain && $.support.cors) {
+                options.url = 'https://the-ultimate-api-challenge.herokuapp.com/' + options.url;
+            }
+        });
+    }
 
-const API_KEY = 'e9750c3c2323e4f1d5c961175a93632d';
+    getLocation(query, callback) {
+        $.getJSON(this.searchApiUrl, { query })
+            .done(data => callback(data))
+            .fail(() => callback(null));
+    }
 
-
-setInterval(() => {
-    const time = new Date();
-    const month = time.getMonth();
-    const date = time.getDate();
-    const day = time.getDay();
-    const hour = time.getHours();
-    const hoursIn12hrFormate = hour >= 13 ? hour %12: hour
-    const minutes = time.getMinutes();
-    const ampm = hour >= 12 ? 'PM' : 'AM' 
-
-    timeEl.innerHTML = (hoursIn12hrFormate < 10 ? '0'+hoursIn12hrFormate : hoursIn12hrFormate) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' '+'<span id = "am-pm">'+ampm+'</span>';
-    dateEl.innerHTML = days[day] +', '+ date+ ' '+ months[month];
-
-}, 1000);
-console.log('hello');
-getWeatherData()
-console.log('hello');
-
-function getWeatherData(){
-    navigator.geolocation.getCurrentPosition((success)=>{
-        console.log('hello');
-
-        console.log(success);
-        let {latitude, longitude} = success.coords;
-
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-            console.log(data);
-        showWeatherData(data);
-        })
-    })
+    getWeatherData(location, callback) {
+        $.getJSON(`${this.baseApiUrl}/${location}`)
+            .done(data => callback(data))
+            .fail(() => callback(null));
+    }
 }
 
+class coreDomElements {
+    constructor() {
+        this.searchForm = $('#search-form');
+        this.errorBox = $('#error-box');
+        this.searchBox = $('#search-box');
+        this.loaderBox = $('#loader-box');
+        this.forecastBox = $('#forecast-box');
+    }
 
-function showWeatherData(data){
-    let{humidity, pressure, sunrise,sunset,wind_speed} = data.current;
-    timezone.innerHTML = data.timezone;
-    countryEl.innerHTML = data.lat + 'N  ' + data.lon + 'E';
-    
-    
-    console.log(humidity);
-    currentWatherItemsEl.innerHTML = 
-                                    `<div class  ="weather-item">
-                                            <div>Humidity</div>
-                                            <div>${humidity}% </div>
-                                        </div>
-                                        <div class  ="weather-item">
-                                            <div>Pressure</div>
-                                            <div>${pressure}</div>
-                                        </div>
-                                        <div class  ="weather-item">
-                                            <div>Wind Speed</div>
-                                            <div>${wind_speed}</div>
-                                        </div>
-                                        <div class  ="weather-item">
-                                            <div>Sun Rise</div>
-                                            <div>${window.moment(sunrise*1000).format('HH:mm a')}</div>
-                                        </div>                                        
-                                        <div class  ="weather-item">
-                                            <div>Sun Set</div>
-                                            <div>${window.moment(sunset*1000).format('HH:mm a')}</div>
-                                        </div>`;
-    let otherDayForcast = '';
-    data.daily.forEach((day, idx) => {
-        if (idx == 0){
-            currentTempEl.innerHTML = `
-                    <img src="https://openweathermap.org/img/wn/${day.weather[idx].icon}@4x.png" alt = "weather icon" class = "w-icon">
-                    <div class = 'others'>
-                        <div class = 'day'>${window.moment(day.dt*1000).format('ddd')}</div>
-                        <div class = 'temp'>Night-${day.temp.night}&#176; C</div>
-                        <div class = 'temp'>Day-${day.temp.day}&#176; C</div>
-                    </div>
-            `
-        }else{
-            otherDayForcast += `
-            </div> 
-            <div class = "weather-forcast-item">
-            <div class = 'day' >${window.moment(day.dt*1000).format('ddd')}</div>
-            <img src ='https://openweathermap.org/img/wn/${day.weather[idx].icon}@2x.png' alt= "weather icon" class = 'W-icon'>
-            <div class = 'temp'>Night-${day.temp.night}&#176;C</div>
-            <div class = 'temp'>Day-${day.temp.day}&#176;C</div> 
-        </div>`
-        }
-    })
+    showForecast() {
+        this.hideError();
+        this.forecastBox.removeClass('d-none');
+        this.forecastBox.addClass('d-flex');
+    }
 
+    showLoader() {
+        this.loaderBox.removeClass('d-none');
+    }
 
-    weatherForcastEl.innerHTML = otherDayForcast;
+    hideLoader() {
+        this.loaderBox.addClass('d-none');
+    }
+
+    showSearch() {
+        this.searchBox.removeClass('d-none');
+        this.searchBox.addClass('d-flex');
+    }
+
+    hideSearchBox() {
+        this.searchBox.removeClass('d-flex');
+        this.searchBox.addClass('d-none');
+    }
+
+    showError(message) {
+        this.hideLoader();
+        this.showSearch();
+        this.errorBox.removeClass('d-none');
+        this.errorBox.addClass('d-block');
+        this.errorBox.html(`<p class="mb-0">${message}</p>`);
+    }
+
+    hideError() {
+        this.errorBox.addClass('d-none');
+    }
 }
 
+class displayForecast {
+    constructor() {
+        this.imageURL = 'https://www.metaweather.com/static/img/weather';
+    }
+    showTodaysForecastDetails({ name, value, unit }) {
+        $(`#forecast-details`).append(`
+            <div class="d-flex justify-content-between">
+                <span class="font-weight-bolder">${name}</span>
+                <span>${value} ${unit}</span>
+            </div>
+        `);
+    }
+    showUpcomingDaysForecast({ dayImgUrl, weekDay, maxTemp }) {
+        $('#forecast-details-week').append(`
+            <li class="forecastBox__week-day d-flex flex-column justify-content-center align-items-center p-2 weather-day">
+                <img class="mb-2" width="30" src="${this.imageURL}/${dayImgUrl}.svg" />
+                <span class="mb-2">${weekDay}</span>
+                <span class="font-weight-bold">${maxTemp}&deg</span>
+            </li>
+        `);
+    }
+    showTodaysForecast(forecast) {
+        $('#forecast-card-weekday').html(forecast.currentWeekday);
+        $('#forecast-card-date').html(forecast.todaysFullDate);
+        $('#forecast-card-location').html(forecast.locationName);
+        $('#forecast-card-img').attr('src', `${this.imageURL}/${forecast.todaysImgUrl}.svg`);
+        $('#forecast-card-temp').html(forecast.todaysTemp);
+        $('#forecast-card-description').html(forecast.weatherState);
+    }
+}
+
+class dataMiddleware {
+    constructor() {
+        this.displayForecast = new displayForecast();
+        this.coreDomElements = new coreDomElements();
+    }
+    gatherTodaysForecastDetails(data) {
+        return {
+            predictability: {
+                value: data.predictability,
+                unit: '%',
+            },
+            humidity: {
+                value: data.humidity,
+                unit: '%',
+            },
+            wind: {
+                value: Math.round(data.wind_speed),
+                unit: 'km/h',
+            },
+            'air pressure': {
+                value: data.air_pressure,
+                unit: 'mb',
+            },
+            'max temp': {
+                value: Math.round(data.max_temp),
+                unit: '°C',
+            },
+            'min temp': {
+                value: Math.round(data.min_temp),
+                unit: '°C',
+            },
+        };
+    }
+
+    gatherTodaysForecastGeneral(data) {
+        return {
+            currentWeekday: moment(data.applicable_date).format('dddd'),
+            todaysFullDate: moment(data.applicable_date).format('MMMM Do'),
+            locationName: data.title,
+            todaysImgUrl: data.weather_state_abbr,
+            todaysTemp: Math.round(data.the_temp),
+            weatherState: data.weather_state_name,
+        };
+    }
+
+    prepareDataForDom(data) {
+        const {
+            predictability,
+            humidity,
+            wind_speed,
+            air_pressure,
+            max_temp,
+            min_temp,
+            applicable_date,
+            the_temp,
+            weather_state_abbr,
+            weather_state_name,
+        } = data.consolidated_weather[0];
+
+        const todaysForecastGeneral = this.gatherTodaysForecastGeneral({
+            applicable_date,
+            weather_state_abbr,
+            weather_state_name,
+            the_temp,
+            title: data.title,
+        });
+        const todaysForecastDetails = this.gatherTodaysForecastDetails({
+            predictability,
+            humidity,
+            wind_speed,
+            air_pressure,
+            max_temp,
+            min_temp,
+        });
+
+        this.displayForecast.showTodaysForecast(todaysForecastGeneral);
+        this.prepareTodaysForecastDetails(todaysForecastDetails);
+        this.prepareUpcomingDaysForecast(data.consolidated_weather);
+        this.coreDomElements.hideLoader();
+        this.coreDomElements.showForecast();
+    }
+
+    prepareTodaysForecastDetails(forecast) {
+        $.each(forecast, (key, value) => {
+            this.displayForecast.showTodaysForecastDetails({
+                name: key.toUpperCase(),
+                value: value.value,
+                unit: value.unit,
+            });
+        });
+    }
+
+    prepareUpcomingDaysForecast(forecast) {
+        $.each(forecast, (index, value) => {
+            if (index < 1) return;
+
+            const dayImgUrl = value.weather_state_abbr;
+            const maxTemp = Math.round(value.max_temp);
+            const weekDay = moment(value.applicable_date).format('dddd').substring(0, 3);
+
+            this.displayForecast.showUpcomingDaysForecast({ dayImgUrl, maxTemp, weekDay });
+        });
+    }
+}
+class requestController {
+    constructor() {
+        this.fetchForecastApi = new fetchForecastApi();
+        this.coreDomElements = new coreDomElements();
+        this.dataMiddleware = new dataMiddleware();
+        this.registerEventListener();
+    }
+
+    showRequestInProgress() {
+        this.coreDomElements.showLoader();
+        this.coreDomElements.hideSearchBox();
+    }
+
+    getQuery() {
+        return $('#search-query').val().trim();
+    }
+
+    fetchWeather(query) {
+        this.fetchForecastApi.getLocation(query, location => {
+            if (!location || location.length === 0) {
+                this.coreDomElements.showError('Could not find this location, please try again.');
+                return;
+            }
+
+            this.fetchForecastApi.getWeatherData(location[0].woeid, data => {
+                if (!data) {
+                    this.coreDomElements.showError('Could not proceed with the request, please try again later.');
+                    return;
+                }
+
+                this.dataMiddleware.prepareDataForDom(data);
+            });
+        });
+    }
+
+    onSubmit() {
+        const query = this.getQuery();
+        if (!query) return;
+
+        this.showRequestInProgress();
+        this.fetchWeather(query);
+    }
+
+    registerEventListener() {
+        this.coreDomElements.searchForm.on('submit', e => {
+            e.preventDefault();
+            this.onSubmit();
+        });
+    }
+}
+
+const request = new requestController();
