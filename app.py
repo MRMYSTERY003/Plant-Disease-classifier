@@ -28,7 +28,7 @@ def predict():
 
 @app.route('/weather', methods = ['GET'])
 def weather():
-    return render_template('new_weather.html')
+    return render_template('weather.html')
 
 @app.route('/pre',methods = ['GET'])
 def pre():
