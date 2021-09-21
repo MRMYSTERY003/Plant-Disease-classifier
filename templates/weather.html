@@ -10,7 +10,7 @@
             crossorigin="anonymous"
         />
         <link href="../static/styles/new_weather_style.css" rel='stylesheet' type='text/css' media="all">
-        <link rel="icon" href="../static/images/favicon.ico" />
+        <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}" /> 
 
         <title>Weather Forecast</title>
     </head>
@@ -129,12 +129,12 @@
                             <h2 id="forecast-card-weekday" class="font-weight-bold mb-1"></h2>
                             <p id="forecast-card-date" class="font-weight-lighter mb-0"></p>
                             <p class="d-flex align-items-baseline font-weight-lighter mb-1">
-                                <img width="10" height="15" src="../static/images/location-pin.png" class="mr-1" />
+                                <img width="10" height="15" src="{{url_for('static', filename = 'images/location-pin.png')}}"" class="mr-1" />  
                                 <span id="forecast-card-location"></span>
                             </p>
                         </div>
                         <div>
-                            <img width="45" id="../static/images/forecast-card-img" src="" />
+                            <img width="45" id="forecast-card-img" src="{{url_for('static', filename = 'images/forecast-card-img')}}" /> 
                             <h2 class="font-weight-bold mb-1"><span id="forecast-card-temp"></span>°C</h2>
                             <h5 id="forecast-card-description" class="font-weight-lighter"></h5>
                         </div>
