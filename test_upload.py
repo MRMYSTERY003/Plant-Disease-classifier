@@ -1,6 +1,6 @@
 import requests
 
-img = 'C:\\Users\\Admin\\Desktop\\Plant-Disease-classifier-master\\t.jpg'
+img = 'testimg.jpg'
 
 url = 'https://pl-ml.herokuapp.com/api'
 my_img = {'image': open(img, 'rb')}
