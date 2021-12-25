@@ -43,6 +43,10 @@ def predict():
             pass
     return render_template('index.html', status=500, res="Internal Server Error")
 
+@app.route('/api/test',mwthods = ['GET'])
+def test():
+    return jsonify('test successfull')
+
 
 @app.route('/weather', methods = ['GET'])
 def weather():
