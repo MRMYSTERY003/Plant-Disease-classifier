@@ -43,7 +43,7 @@ def predict():
             pass
     return render_template('index.html', status=500, res="Internal Server Error")
 
-@app.route('/api/test',methods = ['GET'])
+@app.route('/api/test',methods = ['GET','POST'])
 def test():
     return jsonify('test successfull')
 
