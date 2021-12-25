@@ -1,7 +1,7 @@
-import re
-from flask import Flask, render_template, request, Markup
+from flask import Flask, render_template, request, Markup,jsonify
 from model import predict_image
 import utils
+import api_res
 
 app = Flask(__name__)
 
@@ -9,6 +9,24 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def home():
     return render_template('index.html')
+
+
+@app.route('/api',methods = ['POST'])
+def api():
+    try:
+            file = request.files['image']
+            # Read the image via file.stream
+            img = file.read()
+            prediction = predict_image(img)
+            print(prediction)
+            res = Markup(api_res.disease_dic[prediction])
+            print(res)
+            return jsonify(str(res))
+    except Exception as e:
+                print(e)
+    return jsonify('server is busy')
+
+    
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -40,4 +58,4 @@ def about():
 
 
 if __name__ == "__main__":
-    app.run(debug=Fasle)
+    app.run(debug=True)
