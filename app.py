@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, Markup,jsonify
 from model import predict_image
 import utils
 import api_res
+import base64 as b4
+
 
 app = Flask(__name__)
 
@@ -26,7 +28,23 @@ def api():
                 print(e)
     return jsonify('server is busy')
 
-    
+
+
+@app.route('api/esp',methods = ['POST'])
+def esp():
+    try:
+            file = request.files['image']
+            # Read the image via file.stream
+            img = file.read()
+            decoded = b4.b64decode(img)
+            prediction = predict_image(decoded)
+            print(prediction)
+            res = Markup(api_res.disease_dic[prediction])
+            print(res)
+            return jsonify(str(res))
+    except Exception as e:
+                print(e)
+    return jsonify('server is busy')  
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -43,10 +61,6 @@ def predict():
             pass
     return render_template('index.html', status=500, res="Internal Server Error")
 
-@app.route('/api/test',methods = ['GET','POST'])
-def test():
-    return jsonify('test successfull')
-
 
 @app.route('/weather', methods = ['GET'])
 def weather():
@@ -56,9 +70,13 @@ def weather():
 def pre():
     return render_template('server.html')
 
-@app.route('/about',methods = ['GET'])
+@app.route('/about',methods = ['GET',])
 def about():
     return render_template('about.html')
+
+@app.route('/api/test',methods = ['GET','POST'])
+def test():
+    return jsonify('test successfull')
 
 
 if __name__ == "__main__":
