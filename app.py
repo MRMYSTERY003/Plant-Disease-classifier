@@ -30,7 +30,7 @@ def api():
 
 
 
-@app.route('api/esp',methods = ['POST'])
+@app.route('/api/esp',methods = ['POST'])
 def esp():
     try:
             file = request.files['image']
