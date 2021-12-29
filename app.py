@@ -35,8 +35,8 @@ def esp():
     try:
             file = request.files['image']
             # Read the image via file.stream
-            img = file.read()
-            decoded = b4.b64decode(img)
+            # img = file.read()
+            decoded = b4.b64decode(file)
             prediction = predict_image(decoded)
             print(prediction)
             res = Markup(api_res.disease_dic[prediction])
