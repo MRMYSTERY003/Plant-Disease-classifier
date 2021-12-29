@@ -32,20 +32,26 @@ def api():
 
 @app.route('/esp',methods = ['GET','POST'])
 def esp():
+    dones = []
     try:
+          
             file = request.files['image']
+            dones.append('got the image')
             # Read the image via file.stream
-            # img = file.read()
+            img = file.read()
+            dones.append('read the image')
             decoded = b4.b64decode(file)
+            dones.append('docoded')
             prediction = predict_image(decoded)
+            dones.append('predicted')
             print(prediction)
             res = Markup(api_res.disease_dic[prediction])
             print(res)
-            return jsonify(str(res))
+            return jsonify(str(dones))
     except Exception as e:
                 print(e)
                 return jsonify(str(e))
-    return jsonify('server is busy')  
+    #return jsonify('server is busy')  
 
 
 @app.route('/predict', methods=['GET', 'POST'])
