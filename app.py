@@ -13,7 +13,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/api',methods = ['POST'])
+@app.route('/api',methods = ['GET','POST'])
 def api():
     try:
             file = request.files['image']
@@ -26,6 +26,7 @@ def api():
             return jsonify(str(res))
     except Exception as e:
                 print(e)
+                return jsonify(str(e))
     return jsonify('server is busy')
 
 
