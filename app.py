@@ -41,7 +41,7 @@ def esp():
             # Read the image via file.stream
             img = file.read()
             dones.append('read the image')
-            decoded = b4.b64decode(file)
+            decoded = b4.b64decode(img)
             dones.append('docoded')
             prediction = predict_image(decoded)
             dones.append('predicted')
@@ -51,7 +51,7 @@ def esp():
            
     except Exception as e:
                 print(e)
-                return jsonify(str(dones))
+                return jsonify(str(dones)+str(e))
                 #return jsonify(str(e))
     #return jsonify('server is busy')  
 
