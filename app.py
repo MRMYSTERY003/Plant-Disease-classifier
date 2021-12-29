@@ -30,7 +30,7 @@ def api():
 
 
 
-@app.route('/api/esp',methods = ['POST'])
+@app.route('/esp',methods = ['GET','POST'])
 def esp():
     try:
             file = request.files['image']
@@ -44,6 +44,7 @@ def esp():
             return jsonify(str(res))
     except Exception as e:
                 print(e)
+                return jsonify(str(e))
     return jsonify('server is busy')  
 
 
