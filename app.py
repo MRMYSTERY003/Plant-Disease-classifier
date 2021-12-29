@@ -47,10 +47,11 @@ def esp():
             print(prediction)
             res = Markup(api_res.disease_dic[prediction])
             print(res)
-            return jsonify(str(dones))
+           
     except Exception as e:
                 print(e)
-                return jsonify(str(e))
+                return jsonify(str(dones))
+                #return jsonify(str(e))
     #return jsonify('server is busy')  
 
 
