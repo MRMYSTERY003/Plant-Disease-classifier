@@ -37,7 +37,7 @@ def esp():
     try:
 
             print(f'request ===> {request}')
-            file=json.loads(request.json)
+            file=json.loads(request.data)
             print(f'file===> {file}')
             # Read the image via file.stream
             img = file['image']
