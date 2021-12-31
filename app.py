@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Markup,jsonify
 from model import predict_image
 import utils
 import api_res
+import json
 import base64 as b4
 
 
