@@ -36,18 +36,18 @@ def api():
 def esp():
     try:
 
-            print(f'request ===> {request}')
+            #print(f'request ===> {request}')
             file=json.loads(request.data)
-            print(f'file===> {file}')
+            #print(f'file===> {file}')
             # Read the image via file.stream
             img = file['image']
-            print(f'image ==> {img}')
+            #print(f'image ==> {img}')
             decoded = b4.b64decode(img)
             prediction = predict_image(decoded)
             print(prediction)
             res = Markup(api_res.disease_dic[prediction])
             print(res)
-            return jsonify(str(prediction))
+            return jsonify(str(res))
     except Exception as e:
                 print(e)
                 return jsonify(str(e))
