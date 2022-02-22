@@ -37,12 +37,12 @@ def esp():
     try:
 
             print(f'request ===> {request}')
-            file=json.loads(request.data)
-            print(f'file===> {file}')
+            file=request.data
+            print(f'data===> {file}')
             # Read the image via file.stream
-            img = file['image']
-            print(f'image ==> {img}')
-            decoded = b4.b64decode(img)
+            #img = file['image']
+            #print(f'image ==> {img}')
+            decoded = b4.b64decode(file)
             prediction = predict_image(decoded)
             print(prediction)
             res = Markup(api_res.disease_dic[prediction])
