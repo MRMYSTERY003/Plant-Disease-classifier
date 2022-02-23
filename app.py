@@ -32,7 +32,7 @@ def api():
 
 
 
-@app.route('/esp',methods = ['GET','POST'])
+@app.route('/esp',methods = ['POST'])
 def esp():
     try:
 
