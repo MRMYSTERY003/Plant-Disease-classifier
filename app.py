@@ -37,7 +37,7 @@ def esp():
     try:
 
             print(f'request ===> {request}')
-            j = request.json()
+            j = json.loads(request)
             print(j)
             d = request.data()
             print(d)
